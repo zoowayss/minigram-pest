@@ -6,7 +6,16 @@ services:
       context: ./python-detect
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8090:8080"
     volumes:
       - ./python-detect/static:/app/static
-    restart: always 
+    restart: always
+    networks:
+      - app-network
+    dns:
+      - 8.8.8.8
+      - 114.114.114.114
+
+networks:
+  app-network:
+    driver: bridge 
